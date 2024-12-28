@@ -1,4 +1,5 @@
 const Block = require('./block');
+const Transaction = require('../wallet/transaction');
 const { cryptoHash } = require('../util');
 
 class Blockchain {
@@ -35,19 +36,18 @@ class Blockchain {
     return true;
   }
 
-  replaceChain(chain) {
+  replaceChain(chain, onSuccess) {
     if (chain.length <= this.chain.length) {
       console.error('The incoming chain must be longer');
-
       return;
     }
 
     if (!Blockchain.isValidChain(chain)) {
       console.error('The incoming chain must be valid');
-
       return;
     }
 
+    if (onSuccess) onSuccess();
     console.log('replacing chain wiih', chain);
     this.chain = chain;
   }

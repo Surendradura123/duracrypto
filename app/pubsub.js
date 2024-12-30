@@ -14,12 +14,15 @@ const CHANNELS = {
 };
   
 class PubSub {
-  constructor({blockchain, transactionPool, wallet}) {
+  constructor({blockchain, transactionPool, wallet, redisUrl}) {
     this.blockchain = blockchain;
     this.transactionPool = transactionPool;
     this.wallet = wallet;
 
     this.pubnub = new PubNub(credentials);
+
+    this.publisher = this.pubnub.createClient(redisUrl);
+    this.subscriber = this.pubnub.createClient(redisUrl);
       
     this.pubnub.subscribe({ channels: [Object.values(CHANNELS)] });
     this.pubnub.addListener(this.listener());

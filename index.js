@@ -8,7 +8,7 @@ const TransactionPool = require('./wallet/transaction-pool');
 const Wallet = require('./wallet');
 const TransactionMiner = require('./app/transaction-miner');
 
-// const isDevelopment = process.env.ENV === 'development';
+const isDevelopment = process.env.ENV === 'development';
 
 // const REDIS_URL = 'redis://default:3TYjuirYEvzzPNX7bkGn5eHRuR3FvEP9@redis-13626.c321.us-east-1-2.ec2.redns.redis-cloud.com:13626'
 const DEFAULT_PORT = 3000;
@@ -115,7 +115,7 @@ const syncWithRootState = () => {
   });
 };
 
-
+if(isDevelopment){
   const walletFoo = new Wallet();
   const walletBar = new Wallet();
 
@@ -152,7 +152,7 @@ const syncWithRootState = () => {
     transactionMiner.mineTransactions();
   }
 
-
+}
 
 
 

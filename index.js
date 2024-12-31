@@ -115,7 +115,7 @@ const syncWithRootState = () => {
   });
 };
 
-if(isDevelopment){
+
   const walletFoo = new Wallet();
   const walletBar = new Wallet();
 
@@ -152,7 +152,7 @@ if(isDevelopment){
     transactionMiner.mineTransactions();
   }
 
-}
+
 
 
 

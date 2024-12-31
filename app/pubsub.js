@@ -1,6 +1,5 @@
 const PubNub = require('pubnub');
 
-
 const credentials = {
   publishKey: 'pub-c-6b237561-a5db-443a-905c-5e892476a6cf',
   subscribeKey: 'sub-c-e0648543-5332-4bbb-98c7-94c0c1637c40',
@@ -14,15 +13,12 @@ const CHANNELS = {
 };
   
 class PubSub {
-  constructor({blockchain, transactionPool, wallet, redisUrl}) {
+  constructor({blockchain, transactionPool}) {
     this.blockchain = blockchain;
     this.transactionPool = transactionPool;
-    this.wallet = wallet;
+
 
     this.pubnub = new PubNub(credentials);
-
-    this.publisher = this.pubnub.createClient(redisUrl);
-    this.subscriber = this.pubnub.createClient(redisUrl);
       
     this.pubnub.subscribe({ channels: [Object.values(CHANNELS)] });
     this.pubnub.addListener(this.listener());
